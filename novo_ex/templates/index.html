@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maximização do Volume da Caixa</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        label, input, button {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Suponha que você está construindo uma caixa sem tampa usando uma folha retangular de papelão de 30 cm por 20 cm.</h2>
+        <p>Para fazer a caixa, você cortará quadrados de tamanho x de cada canto do papelão e dobrará as bordas para formar a caixa. Determine o valor de x que maximiza o volume da caixa.</p>
+    </div>
+    <div class="container">
+        <h1>Maximização do Volume da Caixa</h1>
+        <form method="POST" action="/">
+            <label for="x_value">Insira o valor de x (em cm):</label>
+            <input type="text" id="x_value" name="x_value">
+            <button type="submit">Calcular Volume</button>
+        </form>
+        {% if resultado %}
+            <p>O volume máximo é: {{ resultado }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
