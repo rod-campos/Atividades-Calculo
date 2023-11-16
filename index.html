@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Máximo de V(x)</title>
+  <style>
+    .container {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      width: 50%; 
+      margin: 0 auto; 
+      text-align: center;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white; 
+      padding: 10px 20px; 
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049; 
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="container">
+    <h1>Calculadora de Máximo de V(x)</h1>
+    <p>Digite um valor para x (entre 0 e 0.5):</p>
+    <input type="number" id="valorX" step="0.01" min="0" max="0.5">
+    <br>
+    <button onclick="calcularMaximo()">Calcular</button>
+    <p id="resultadoMaximo"></p>
+  </div>
+
+  <div class="container">
+    <h1>Cálculo da Área de [BDEF]</h1>
+    <p>Insira o valor de d (d(D, B)): <input type="number" id="valorD" step="0.01"></p>
+    <button onclick="calcularArea()">Calcular Área</button>
+    <p id="resultadoArea"></p>
+  </div>
+
+  <script>
+    function calcularMaximo() {
+      var valorX = document.getElementById('valorX').value;
+
+      fetch('/calcular', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ x: valorX })
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('resultadoMaximo').innerText = data.resultado;
+      });
+    }
+
+    function calcularArea() {
+      var valorD = document.getElementById('valorD').value;
+
+      var areaBDEF = ((valorD / 6) ** 2) * 24;
+      
+      document.getElementById('resultadoArea').innerText = `Área de [BDEF]: ${areaBDEF}`;
+    }
+  </script>
+</body>
+</html>
